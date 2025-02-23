@@ -1,6 +1,5 @@
-package com.example.project4.ui
+package com.example.project4.ui.screen.dataList
 
-import android.content.Context
 import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -105,19 +104,6 @@ fun DataListScreen(navController: NavHostController, viewModel: DataViewModel) {
                     }
                 }
             }
-        }
-    }
-
-    Box(modifier = Modifier.fillMaxSize()) {
-        FloatingActionButton(
-            onClick = { navController.navigate("form") },
-            modifier = Modifier
-                .align(Alignment.BottomEnd)
-                .padding(48.dp)
-        ) {
-            Text(
-                text = "+",
-            )
         }
     }
 }
