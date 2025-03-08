@@ -9,5 +9,5 @@ data class ProfileEntity(
     val name: String,
     val studentId: String,
     val email: String,
-    val image: ByteArray? = null // Simpan gambar dalam bentuk ByteArray
+    val image: ByteArray? = null, // Simpan gambar langsung
 )

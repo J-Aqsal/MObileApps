@@ -7,6 +7,7 @@ import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.List
+import androidx.compose.material.icons.filled.Menu
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.*
@@ -51,7 +52,7 @@ fun Project4App(
     ) { innerPadding ->
         NavHost(
             navController = navController,
-            startDestination = Screen.Home.route,
+            startDestination = Screen.Profile.route,
             modifier = Modifier.padding(innerPadding)
         ) {
             composable(Screen.DataEntry.route) {
@@ -67,7 +68,7 @@ fun Project4App(
                 DataListScreen(navController = navController, viewModel = viewModel)
             }
             composable(Screen.Profile.route) {
-                ProfileScreen(viewModel = profileViewModel)
+                    ProfileScreen(viewModel = profileViewModel)
             }
             composable(Screen.Home.route){
                 HomeScreen(viewModel = viewModel)
@@ -115,7 +116,7 @@ private fun BottomBar(
             ),
             NavigationItem(
                 title = "list",
-                icon = Icons.Default.List,
+                icon = Icons.Default.Menu,
                 screen = Screen.DataList
             ),
             NavigationItem(

@@ -1,17 +1,27 @@
 package com.example.project4.viewmodel
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.project4.data.AppDatabase
 import com.example.project4.data.DataEntity
+import com.example.project4.data.model.SampahItem
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class DataViewModel(application: Application) : AndroidViewModel(application) {
+import com.example.project4.data.repository.SampahRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
+
+@HiltViewModel
+class DataViewModel @Inject constructor(
+    application: Application,
+    private val repository: SampahRepository
+) : AndroidViewModel(application) {
     private val dao = AppDatabase.getDatabase(application).dataDao()
 
     private val _rowCount = MutableLiveData<Int>(0)
@@ -24,6 +34,8 @@ class DataViewModel(application: Application) : AndroidViewModel(application) {
     }
     val dataList: LiveData<List<DataEntity>> = dao.getAll()
 
+    private val _apiDataList = MutableLiveData<List<SampahItem>>() // Data dari API
+    val apiDataList: LiveData<List<SampahItem>> = _apiDataList
 
     fun insertData(
         kodeProvinsi: String,
@@ -75,6 +87,20 @@ class DataViewModel(application: Application) : AndroidViewModel(application) {
             dao.getById(id)
         }
     }
+    fun fetchApiData() {
+        viewModelScope.launch {
+            try {
+                val response = repository.getSampah()
 
-
+                Log.d("API_RESPONSE", response.body().toString())
+                if (response.isSuccessful) {
+                    _apiDataList.value = response.body()?.data ?: emptyList()
+                } else {
+                    Log.e("DataViewModel", "Error: ${response.message()}")
+                }
+            } catch (e: Exception) {
+                Log.e("DataViewModel", "Exception: ${e.message}")
+            }
+        }
+    }
 }

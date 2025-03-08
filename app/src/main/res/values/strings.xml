@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">PROJECT4</string>
+    <string name="app_name">DATA JABAR</string>
     <string name="menu_home">Home</string>
     <string name="menu_cart">Keranjang</string>
     <string name="menu_profile">Profile</string>
@@ -11,4 +11,6 @@
     <string name="total_order">Total pesanan : %d Pts</string>
     <string name="back">Back</string>
     <string name="jtk_reward">JTK Reward</string>
+    <string name="nama">Jagad Aqsal. N. S</string>
+    <string name="nim">231511017</string>
 </resources>

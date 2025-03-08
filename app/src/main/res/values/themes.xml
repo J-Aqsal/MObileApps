@@ -2,4 +2,10 @@
 <resources>
 
     <style name="Theme.PROJECT4" parent="android:Theme.Material.Light.NoActionBar" />
+
+
+    <style name="Theme.PROJECT4.Splash" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@drawable/splash_background</item>
+    </style>
+
 </resources>

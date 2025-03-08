@@ -29,9 +29,10 @@ fun ProfileScreen(viewModel: ProfileViewModel) {
 
     var isEditing by remember { mutableStateOf(false) }
 
-    var studentName by remember { mutableStateOf(profile?.name ?: "Mahasiswa JTK") }
-    var studentId by remember { mutableStateOf(profile?.studentId ?: "22222") }
-    var studentEmail by remember { mutableStateOf(profile?.email ?: "mahasiswa@jtk.polban.ac.id") }
+    var studentName by remember(profile) { mutableStateOf(profile?.name ?: "Mahasiswa JTK") }
+    var studentId by remember(profile) { mutableStateOf(profile?.studentId ?: "22222") }
+    var studentEmail by remember(profile) { mutableStateOf(profile?.email ?: "mahasiswa@jtk.polban.ac.id") }
+
 
     // State untuk URI gambar
     var profileImageUri by remember { mutableStateOf<Uri?>(null) }

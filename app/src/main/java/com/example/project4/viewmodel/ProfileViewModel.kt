@@ -27,7 +27,9 @@ class ProfileViewModel(application: Application) : AndroidViewModel(application)
 
     private fun loadProfile() {
         viewModelScope.launch {
-            _profile.value = dao.getProfile().firstOrNull()
+            dao.getProfile().collect { profileData ->
+                _profile.value = profileData
+            }
         }
     }
 
@@ -57,6 +59,7 @@ class ProfileViewModel(application: Application) : AndroidViewModel(application)
                         dao.insert(ProfileEntity(id = 1, name = "", studentId = "", email = "", image = byteArray))
                     } else {
                         dao.updateProfileImage(byteArray)
+
                     }
                     _profile.value = dao.getProfile().firstOrNull()
                 }
